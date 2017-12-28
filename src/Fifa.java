@@ -23,11 +23,11 @@ public class Fifa {
     }
 
     public void afficherFifa() {
-        mapFifa.values().stream().forEach(e -> e.afficherEquipes());
-        /*mapFifa.entrySet().stream().forEach((map) -> {
-            map.getValue().afficherEquipes();
-            System.out.println(map.getKey().toString());
-        });*/
+        mapFifa.values().forEach(EnsembleEquipe::afficherEquipes);
+//        mapFifa.forEach((key, value) -> {
+//            value.afficherEquipes();
+//            System.out.println(key.toString());
+//        });
     }
 
     public List<Equipe> retournerEquipesParPays(String pays) {
@@ -51,7 +51,7 @@ public class Fifa {
                     ensembleEquipe.getEquipes()
                             .stream()
                             .flatMap(equipe -> equipe.getJoueurs().stream())
-                            .anyMatch(s -> s.getNationalite().equals("tunisie"));
+                            .anyMatch(s -> s.getNationalite().equalsIgnoreCase("Tunisien"));
             if (tunisian) {
                 list.add(competition);
             }
